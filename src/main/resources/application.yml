@@ -1,0 +1,8 @@
+auth0:
+  audience: https://dev-gb61hjary7ea583j.us.auth0.com/api/v2/
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-gb61hjary7ea583j.us.auth0.com/
