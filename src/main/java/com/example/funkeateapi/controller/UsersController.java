@@ -26,7 +26,8 @@ public class UsersController {
 	    usersRepository.save(n);
 	    return "Saved";
 	  }*/
-	
+
+	//http://localhost:8080/users/all
 	@GetMapping(path="/all")
 	  public @ResponseBody Iterable<Users> getAllUsers() {
 	    // This returns a JSON or XML with the users
