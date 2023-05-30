@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .mvcMatchers("/api/public").permitAll()
                 .mvcMatchers("/api/private").authenticated()
                 .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")
-                .mvcMatchers("/products/all").authenticated()
+                .mvcMatchers("/products/all").permitAll()
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
         return http.build();
