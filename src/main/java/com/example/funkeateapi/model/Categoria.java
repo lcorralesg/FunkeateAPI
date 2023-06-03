@@ -12,7 +12,10 @@ public class Categoria {
 	
 	@Column(columnDefinition = "varchar(55)", unique = true, nullable = false)
 	private String nombre;
-	
+
+	@Column(columnDefinition = "varchar(255)")
+	private String imagen;
+
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date created_at;
 	
@@ -60,6 +63,14 @@ public class Categoria {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }
 
