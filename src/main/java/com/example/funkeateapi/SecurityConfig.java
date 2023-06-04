@@ -8,9 +8,6 @@ import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.SecurityFilterChain;
 
-/**
- * Configures our application with Spring Security to restrict access to our API endpoints.
- */
 @EnableWebSecurity
 public class SecurityConfig {
 
@@ -30,7 +27,7 @@ public class SecurityConfig {
                 .mvcMatchers("/api/public").permitAll()
                 .mvcMatchers("/api/private").authenticated()
                 .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")
-                .mvcMatchers("/products/all").permitAll()
+                .mvcMatchers("/products/all").authenticated()
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
         return http.build();
@@ -42,10 +39,8 @@ public class SecurityConfig {
         By default, Spring Security does not validate the "aud" claim of the token, to ensure that this token is
         indeed intended for our app. Adding our own validator is easy to do:
         */
-
         NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder)
                 JwtDecoders.fromOidcIssuerLocation(issuer);
-
         OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(audience);
         OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
         OAuth2TokenValidator<Jwt> withAudience = new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator);
