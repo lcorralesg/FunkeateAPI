@@ -3,6 +3,8 @@ package com.example.funkeateapi.repository;
 import com.example.funkeateapi.model.Categoria;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CategoriaRepository extends CrudRepository<Categoria, Integer> {
+import java.util.List;
 
+public interface CategoriaRepository extends CrudRepository<Categoria, Integer> {
+    List<Categoria> findByNombre(String categoria_name);
 }
