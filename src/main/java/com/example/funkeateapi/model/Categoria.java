@@ -9,17 +9,20 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(columnDefinition = "varchar(55)", unique = true, nullable = false)
 	private String nombre;
-	
+
+	@Column(columnDefinition = "varchar(255)")
+	private String imagen;
+
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date created_at;
-	
+
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date update_at;
-    
-    @Column(columnDefinition = "boolean default true")
+
+	@Column(columnDefinition = "boolean default true")
 	private boolean estado;
 
 	public int getId() {
@@ -60,6 +63,14 @@ public class Categoria {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }
 
