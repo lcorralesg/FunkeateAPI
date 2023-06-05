@@ -10,13 +10,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Value("${auth0.audience}")
     private String audience;
-
     @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
     private String issuer;
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         /*
@@ -28,6 +25,7 @@ public class SecurityConfig {
                 .mvcMatchers("/api/private").authenticated()
                 .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")
                 .mvcMatchers("/products/all").authenticated()
+                .mvcMatchers("/categories/all").permitAll()
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
         return http.build();
