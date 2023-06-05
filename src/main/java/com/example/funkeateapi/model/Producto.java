@@ -15,6 +15,9 @@ public class Producto {
 	
     @Column(columnDefinition = "varchar(255)", nullable = false)
 	private String descripcion;
+
+	@Column(columnDefinition = "varchar(255)")
+	private String detalles;
     
     @Column(columnDefinition = "decimal(8,2)", nullable = false)
 	private double precio;
@@ -30,7 +33,18 @@ public class Producto {
     
     @Column(columnDefinition = "boolean default true")
 	private boolean estado;
-    
+
+	@Column(columnDefinition = "boolean default true")
+	private boolean caja_personalizada;
+
+	@Column(columnDefinition = "boolean default true")
+	private boolean personalizable;
+
+	@Column(columnDefinition = "varchar(50) default 16x12x9 cm")
+	private String tamaño_caja;
+
+	@Column(columnDefinition = "varchar(50) default 13x6 cm")
+	private String tamaño_funko;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Categoria categoria;
 
@@ -105,7 +119,46 @@ public class Producto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-    
+
+	public boolean isCaja_personalizada() {
+		return caja_personalizada;
+	}
+
+	public void setCaja_personalizada(boolean caja_personalizada) {
+		this.caja_personalizada = caja_personalizada;
+	}
+
+	public boolean isPersonalizable() {
+		return personalizable;
+	}
+
+	public void setPersonalizable(boolean personalizable) {
+		this.personalizable = personalizable;
+	}
+
+	public String getTamaño_caja() {
+		return tamaño_caja;
+	}
+
+	public void setTamaño_caja(String tamaño_caja) {
+		this.tamaño_caja = tamaño_caja;
+	}
+
+	public String getTamaño_funko() {
+		return tamaño_funko;
+	}
+
+	public void setTamaño_funko(String tamaño_funko) {
+		this.tamaño_funko = tamaño_funko;
+	}
+
+	public String getDetalles() {
+		return detalles;
+	}
+
+	public void setDetalles(String detalles) {
+		this.detalles = detalles;
+	}
 }
 //insert into funkos-producto (nombre, descripcion, precio, imagen, categoria_id) values ('Goku', 'Funko de Goku', 10.00, 'test2', 1);
 //insert into funkos_producto (nombre, descripcion, precio, imagen, categoria_id) values ('Capitan America', 'Funko de Capitan America', 10.00, 'test1', 2);
