@@ -24,27 +24,27 @@ public class Producto {
     
     @Column(columnDefinition = "varchar(255)", nullable = false, unique = true)
 	private String imagen;
-    
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date created_at;
-	
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date update_at;
+
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name = "created_at")
+	private Date createdAt;
+
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name = "update_at")
+	private Date updateAt;
     
     @Column(columnDefinition = "boolean default true")
 	private boolean estado;
 
-	@Column(columnDefinition = "boolean default true")
-	private boolean caja_personalizada;
+	@Column(columnDefinition = "boolean default true", name = "caja_personalizada")
+	private boolean cajaPersonalizada;
 
 	@Column(columnDefinition = "boolean default true")
 	private boolean personalizable;
 
-	@Column(columnDefinition = "varchar(50) default 16x12x9 cm")
-	private String tamaño_caja;
+	@Column(columnDefinition = "varchar(50) default 16x12x9 cm", name="tamaño_caja")
+	private String tamañoCaja;
 
-	@Column(columnDefinition = "varchar(50) default 13x6 cm")
-	private String tamaño_funko;
+	@Column(columnDefinition = "varchar(50) default 13x6 cm", name = "tamaño_funko")
+	private String tamañoFunko;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Categoria categoria;
 
@@ -88,22 +88,6 @@ public class Producto {
 		this.imagen = imagen;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
-	}
-
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
-
-	public Date getUpdate_at() {
-		return update_at;
-	}
-
-	public void setUpdate_at(Date update_at) {
-		this.update_at = update_at;
-	}
-
 	public boolean isEstado() {
 		return estado;
 	}
@@ -120,14 +104,6 @@ public class Producto {
 		this.categoria = categoria;
 	}
 
-	public boolean isCaja_personalizada() {
-		return caja_personalizada;
-	}
-
-	public void setCaja_personalizada(boolean caja_personalizada) {
-		this.caja_personalizada = caja_personalizada;
-	}
-
 	public boolean isPersonalizable() {
 		return personalizable;
 	}
@@ -136,28 +112,52 @@ public class Producto {
 		this.personalizable = personalizable;
 	}
 
-	public String getTamaño_caja() {
-		return tamaño_caja;
-	}
-
-	public void setTamaño_caja(String tamaño_caja) {
-		this.tamaño_caja = tamaño_caja;
-	}
-
-	public String getTamaño_funko() {
-		return tamaño_funko;
-	}
-
-	public void setTamaño_funko(String tamaño_funko) {
-		this.tamaño_funko = tamaño_funko;
-	}
-
 	public String getDetalles() {
 		return detalles;
 	}
 
 	public void setDetalles(String detalles) {
 		this.detalles = detalles;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdateAt() {
+		return updateAt;
+	}
+
+	public void setUpdateAt(Date updateAt) {
+		this.updateAt = updateAt;
+	}
+
+	public boolean isCajaPersonalizada() {
+		return cajaPersonalizada;
+	}
+
+	public void setCajaPersonalizada(boolean cajaPersonalizada) {
+		this.cajaPersonalizada = cajaPersonalizada;
+	}
+
+	public String getTamañoCaja() {
+		return tamañoCaja;
+	}
+
+	public void setTamañoCaja(String tamañoCaja) {
+		this.tamañoCaja = tamañoCaja;
+	}
+
+	public String getTamañoFunko() {
+		return tamañoFunko;
+	}
+
+	public void setTamañoFunko(String tamañoFunko) {
+		this.tamañoFunko = tamañoFunko;
 	}
 }
 //insert into funkos-producto (nombre, descripcion, precio, imagen, categoria_id) values ('Goku', 'Funko de Goku', 10.00, 'test2', 1);

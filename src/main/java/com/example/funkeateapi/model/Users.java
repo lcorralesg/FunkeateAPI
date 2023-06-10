@@ -22,26 +22,26 @@ public class Users {
 	@Column(columnDefinition = "varchar(124)", unique = true, nullable = false)
 	private String password;
 	
-    @Column(columnDefinition = "boolean default false")
-	private boolean is_superuser;
+    @Column(columnDefinition = "boolean default false", name="is_superuser")
+	private boolean isSuperuser;
 	
-    @Column(columnDefinition = "boolean default false")
-	private boolean is_staff;
+    @Column(columnDefinition = "boolean default false", name="is_staff")
+	private boolean isStaff;
 	
-    @Column(columnDefinition = "boolean default true")
-	private boolean is_active;
+    @Column(columnDefinition = "boolean default true", name="is_active")
+	private boolean isActive;
 	
-    @Column(columnDefinition = "boolean default false")
-	private boolean email_Verified;
+    @Column(columnDefinition = "boolean default false", name="email_Verified")
+	private boolean emailVerified;
     
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date last_login;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name="last_login")
+	private Date lastLogin;
 	
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date date_joined;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name="date_joined")
+	private Date dateJoined;
 	
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date created_at;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name="created_at")
+	private Date createdAt;
 
 	public int getId() {
 		return id;
@@ -83,62 +83,59 @@ public class Users {
 		this.password = password;
 	}
 
-	public Date getLast_login() {
-		return last_login;
+	public boolean isSuperuser() {
+		return isSuperuser;
 	}
 
-	public void setLast_login(Date last_login) {
-		this.last_login = last_login;
+	public void setSuperuser(boolean superuser) {
+		isSuperuser = superuser;
 	}
 
-	public boolean isIs_superuser() {
-		return is_superuser;
+	public boolean isStaff() {
+		return isStaff;
 	}
 
-	public void setIs_superuser(boolean is_superuser) {
-		this.is_superuser = is_superuser;
+	public void setStaff(boolean staff) {
+		isStaff = staff;
 	}
 
-	public boolean isIs_staff() {
-		return is_staff;
+	public boolean isActive() {
+		return isActive;
 	}
 
-	public void setIs_staff(boolean is_staff) {
-		this.is_staff = is_staff;
+	public void setActive(boolean active) {
+		isActive = active;
 	}
 
-	public boolean isIs_active() {
-		return is_active;
+	public boolean isEmailVerified() {
+		return emailVerified;
 	}
 
-	public void setIs_active(boolean is_active) {
-		this.is_active = is_active;
+	public void setEmailVerified(boolean emailVerified) {
+		this.emailVerified = emailVerified;
 	}
 
-	public Date getDate_joined() {
-		return date_joined;
+	public Date getLastLogin() {
+		return lastLogin;
 	}
 
-	public void setDate_joined(Date date_joined) {
-		this.date_joined = date_joined;
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	public Date getDateJoined() {
+		return dateJoined;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setDateJoined(Date dateJoined) {
+		this.dateJoined = dateJoined;
 	}
 
-	public boolean getEmail_Verified() {
-		return email_Verified;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setEmail_Verified(boolean email_Verified) {
-		this.email_Verified = email_Verified;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
-	
-	
-
 }

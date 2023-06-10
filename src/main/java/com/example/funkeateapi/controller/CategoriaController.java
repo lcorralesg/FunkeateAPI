@@ -23,8 +23,8 @@ public class CategoriaController {
 	    Categoria c = new Categoria();
 	    c.setNombre(name);
 	    c.setEstado(true);
-	    c.setCreated_at(new java.util.Date());
-	    c.setUpdate_at(new java.util.Date());
+	    c.setCreatedAt(new java.util.Date());
+	    c.setUpdateAt(new java.util.Date());
 	    categoriaRepository.save(c);
 	    return "Saved";
 	  }

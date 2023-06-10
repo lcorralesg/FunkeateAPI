@@ -24,8 +24,8 @@ public class Ubigeo {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String pais;
 
-    @Column(columnDefinition = "varchar(255)", nullable = false)
-    private String codigo_postal;
+    @Column(columnDefinition = "varchar(255)", nullable = false, name = "codigo_postal")
+    private String codigoPostal;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String referencia;
@@ -33,11 +33,11 @@ public class Ubigeo {
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Users usuario;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date created_at;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name = "created_at")
+    private Date createdAt;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date update_at;
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name = "update_at")
+    private Date updateAt;
 
     public int getId() {
         return id;
@@ -87,14 +87,6 @@ public class Ubigeo {
         this.pais = pais;
     }
 
-    public String getCodigo_postal() {
-        return codigo_postal;
-    }
-
-    public void setCodigo_postal(String codigo_postal) {
-        this.codigo_postal = codigo_postal;
-    }
-
     public String getReferencia() {
         return referencia;
     }
@@ -111,19 +103,27 @@ public class Ubigeo {
         this.usuario = usuario;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public String getCodigoPostal() {
+        return codigoPostal;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
 
-    public Date getUpdate_at() {
-        return update_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setUpdate_at(Date update_at) {
-        this.update_at = update_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 }
