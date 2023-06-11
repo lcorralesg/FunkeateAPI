@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
+
 @RestController
 @RequestMapping(path = "products", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "*")

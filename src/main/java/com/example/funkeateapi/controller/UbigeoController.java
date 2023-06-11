@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
 @RestController
 @RequestMapping(path = "ubigeo", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "*")

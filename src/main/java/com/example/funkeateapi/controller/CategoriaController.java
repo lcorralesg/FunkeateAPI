@@ -8,6 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
 @Controller
 @RequestMapping(path="/categories")
 public class CategoriaController {
