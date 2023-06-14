@@ -12,7 +12,9 @@ import java.util.Date;
 @Table(name="funkos_venta")
 public class Venta {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT")
+
     private int id;
 
     @Column(name = "monto_total", columnDefinition = "DECIMAL(8,2) DEFAULT 0",  nullable = false)
@@ -33,7 +35,7 @@ public class Venta {
     @Column(columnDefinition = "boolean default true")
     private boolean estado;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Carrito carrito;
 
     public int getId() {

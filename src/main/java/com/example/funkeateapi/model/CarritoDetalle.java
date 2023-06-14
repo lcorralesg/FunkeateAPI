@@ -13,7 +13,8 @@ import java.util.Date;
 @Table(name="funkos_carrito_detalle")
 public class CarritoDetalle {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT")
     private int id;
 
     @Column(columnDefinition = "DECIMAL(8,2) DEFAULT 0",  nullable = false)

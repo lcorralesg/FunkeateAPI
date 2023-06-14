@@ -30,6 +30,7 @@ public class ProductoController {
 	private CategoriaRepository categoriaRepository;
 
 	JSONObject json = new JSONObject();
+
 	//http://localhost:8080/products/add?name=Iron Man&descripcion=Funko de Iron Man personalizable&image=url&precio=85&categoria_id=2
 	@PostMapping(path="/add") // Ruta para añadir productos
 	  public @ResponseBody String addNewCategory (@RequestParam String name,

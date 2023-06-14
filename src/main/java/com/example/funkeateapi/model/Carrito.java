@@ -14,7 +14,8 @@ import java.util.Date;
 public class Carrito {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT")
     private int id;
 
     @Column(name="cantidad_total", columnDefinition = "int(11) default 0",  nullable = false)
@@ -39,7 +40,7 @@ public class Carrito {
     private boolean estado;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Users usuario;
+    private Users users;
 
     //GETTERS AND SETTERS
 
@@ -91,14 +92,6 @@ public class Carrito {
         this.updateAt = updateAt;
     }
 
-    public Users getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Users usuario) {
-        this.usuario = usuario;
-    }
-
     public boolean isEstado() {
         return estado;
     }
@@ -113,5 +106,13 @@ public class Carrito {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }
