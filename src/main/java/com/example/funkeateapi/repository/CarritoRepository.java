@@ -6,6 +6,7 @@ import com.example.funkeateapi.model.Users;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -22,4 +23,7 @@ public interface CarritoRepository extends CrudRepository<Carrito, Integer> {
     void deleteById(Integer integer);
 
     boolean existsByUsersIdAndEstadoIsTrue(int users_id);
+
+    List<Carrito> findByUsersIdAndEstadoIsTrue(int usuario_id);
+
 }

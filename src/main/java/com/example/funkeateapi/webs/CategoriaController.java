@@ -1,4 +1,4 @@
-package com.example.funkeateapi.controller;
+package com.example.funkeateapi.webs;
 
 import com.example.funkeateapi.model.Categoria;
 import com.example.funkeateapi.repository.CategoriaRepository;

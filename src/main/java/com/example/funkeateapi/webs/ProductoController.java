@@ -1,4 +1,4 @@
-package com.example.funkeateapi.controller;
+package com.example.funkeateapi.webs;
 
 import com.example.funkeateapi.model.Categoria;
 import com.example.funkeateapi.model.Producto;
@@ -23,6 +23,7 @@ import java.util.Optional;
 @RequestMapping(path = "products", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "*")
 public class ProductoController {
+
 	@Autowired
 	private ProductoRepository productoRepository;
 	
@@ -92,9 +93,9 @@ public class ProductoController {
 		return json;
 	}*/
 
-	// http://localhost:8080/products/findbycategoryname?cname=SuperHeroes
-	@GetMapping(path="/findbycategoryname") // Obtener productos por categoria
-	public @ResponseBody JSONObject findProductsbyCategoryName (@RequestParam String cname) {
+	// http://localhost:8080/products/findbycategoryname/{cname}
+	@GetMapping(value="/findbycategoryname/{cname}") // Obtener productos por categoria
+	public @ResponseBody JSONObject findProductsbyCategoryName (@PathVariable String cname) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 		List<Producto> data = productoRepository.findByCategoria_Nombre(cname);

@@ -1,4 +1,4 @@
-package com.example.funkeateapi.controller;
+package com.example.funkeateapi.webs;
 
 import com.example.funkeateapi.model.Users;
 import com.example.funkeateapi.repository.UsersRepository;
@@ -6,8 +6,11 @@ import com.nimbusds.jose.shaded.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Optional;
 
 /**
  *
@@ -44,4 +47,16 @@ public class UsersController {
 		json.put("data",usersRepository.findAll());
 		return json;
 	  }
+
+
+
+	//http://localhost:8080/users/findById/{user_id}
+	@GetMapping(value = "/findById/{user_id}")
+	public @ResponseBody JSONObject findById(@PathVariable Integer user_id) {
+		// This returns a JSON or XML with the products
+		Optional<Users> data = usersRepository.findById(user_id);
+		json.put("count",data.stream().count());
+		json.put("data",data);
+		return json;
+	}
 }

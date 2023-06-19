@@ -12,4 +12,6 @@ import java.util.List;
  * */
 public interface CarritoDetalleRepository extends CrudRepository<CarritoDetalle, Integer> {
     List<CarritoDetalle> findById(int id);
+
+    List<CarritoDetalle> findByCarritoId(int carrito_id);
 }
