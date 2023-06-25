@@ -2,6 +2,7 @@ package com.example.funkeateapi.controller;
 
 import com.example.funkeateapi.model.Users;
 import com.example.funkeateapi.repository.UsersRepository;
+import com.nimbusds.jose.shaded.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UsersController {
 	@Autowired
 	private UsersRepository usersRepository;
-	
+
+	JSONObject json = new JSONObject();
+
 	/*@PostMapping(path="/add") // Map ONLY POST Requests
 	  public @ResponseBody String addNewUser (@RequestParam String name
 	      , @RequestParam String email) {
@@ -26,10 +29,13 @@ public class UsersController {
 	    usersRepository.save(n);
 	    return "Saved";
 	  }*/
-	
+
+	//http://localhost:8080/users/all
 	@GetMapping(path="/all")
-	  public @ResponseBody Iterable<Users> getAllUsers() {
+	  public @ResponseBody JSONObject getAllUsers() {
 	    // This returns a JSON or XML with the users
-	    return usersRepository.findAll();
+		json.put("count", usersRepository.count());
+		json.put("data",usersRepository.findAll());
+		return json;
 	  }
 }
