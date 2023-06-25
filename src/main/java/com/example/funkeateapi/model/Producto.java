@@ -40,10 +40,10 @@ public class Producto {
 	@Column(columnDefinition = "boolean default true")
 	private boolean personalizable;
 
-	@Column(columnDefinition = "varchar(50) default 16x12x9 cm", name="tamaño_caja")
+	@Column(columnDefinition = "varchar(50) default '16x12x9 cm'", name = "tamaño_caja")
 	private String tamañoCaja;
 
-	@Column(columnDefinition = "varchar(50) default 13x6 cm", name = "tamaño_funko")
+	@Column(columnDefinition = "varchar(50) default '13x6 cm'", name = "tamaño_funko")
 	private String tamañoFunko;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Categoria categoria;
