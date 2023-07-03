@@ -1,12 +1,10 @@
 package com.example.funkeateapi.webs;
 
-import com.example.funkeateapi.model.Carrito;
 import com.example.funkeateapi.model.CarritoDetalle;
-import com.example.funkeateapi.model.Categoria;
-import com.example.funkeateapi.model.Producto;
 import com.example.funkeateapi.repository.CarritoDetalleRepository;
 import com.example.funkeateapi.repository.CarritoRepository;
 import com.example.funkeateapi.repository.ProductoRepository;
+import com.nimbusds.jose.shaded.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "carsdetail", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,6 +27,7 @@ public class CarritoDetalleController {
     @Autowired
     private ProductoRepository productoRepository;
 
+    JSONObject json = new JSONObject();
     @PostMapping(value = "/add")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<CarritoDetalle> create(@RequestBody CarritoDetalle carritoDetalle) {
@@ -67,4 +65,14 @@ public class CarritoDetalleController {
             return "Error";
         }
     }*/
+
+    //http://localhost:8080/carsdetail/findByCarritoID/{carrito_id}
+    @GetMapping(value = "/findByCarritoId/{carrito_id}")
+    public @ResponseBody JSONObject findByCarritoId(@PathVariable Integer carrito_id) {
+        // This returns a JSON or XML with the products
+        List<CarritoDetalle> data = carritoDetalleRepository.findByCarritoId(carrito_id);
+        json.put("count",data.stream().count());
+        json.put("data",data);
+        return json;
+    }
 }
