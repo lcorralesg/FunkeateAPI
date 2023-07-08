@@ -24,6 +24,6 @@ public interface CarritoRepository extends CrudRepository<Carrito, Integer> {
 
     boolean existsByUsersIdAndEstadoIsTrue(int users_id);
 
-    List<Carrito> findByUsersIdAndEstadoIsTrue(int usuario_id);
+    Optional<Carrito> findByUsersIdAndEstadoIsTrue(int usuario_id);
 
 }

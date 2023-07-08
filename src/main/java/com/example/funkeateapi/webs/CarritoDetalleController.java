@@ -41,31 +41,44 @@ public class CarritoDetalleController {
 
     //http://localhost:8080/carsdetail/add?
     @PostMapping(path = "/add") // Ruta para añadir productos
-    public @ResponseBody String addNewCarDetailProduct(@RequestParam double precio, @RequestParam int cantidad,
+    public @ResponseBody JSONObject addNewCarDetailProduct(@RequestParam double precio, @RequestParam int cantidad,
                                                        @RequestParam int carrito_id, @RequestParam int producto_id) {
 
-        CarritoDetalle cd = new CarritoDetalle();
+        Optional<CarritoDetalle> carritoOld = carritoDetalleRepository.findByCarritoIdAndProductoId(carrito_id,producto_id);
 
-        cd.setPrecio(precio);
-        cd.setCantidad(cantidad);
+        if(carritoOld.isPresent()){
+            CarritoDetalle carritoToUpdate = carritoOld.get();
+            carritoToUpdate.setCantidad(carritoToUpdate.getCantidad()+1);
+            carritoDetalleRepository.save(carritoToUpdate);
+            json.put("message", "Este producto "+ carritoToUpdate.getProducto().getNombre()+" ya esta en tu carrito, hemos aumentado la cantidad");
+            return json;
+        }else{
+            CarritoDetalle cd = new CarritoDetalle();
 
-        List<Carrito> car = carritoRepository.findById(carrito_id);
-        Optional<Carrito> c = car.stream().findFirst();
+            cd.setPrecio(precio);
+            cd.setCantidad(cantidad);
 
-        Optional<Producto> pro = productoRepository.findById(producto_id);
+            List<Carrito> car = carritoRepository.findById(carrito_id);
+            Optional<Carrito> c = car.stream().findFirst();
 
-        if (c.isPresent()) {
-            Carrito carrito = c.get();
-            cd.setCarrito(carrito);
-            if (pro.isPresent()) {
-                cd.setProducto(pro.get());
-                carritoDetalleRepository.save(cd);
-                return "Saved";
+            Optional<Producto> pro = productoRepository.findById(producto_id);
+
+            if (c.isPresent()) {
+                Carrito carrito = c.get();
+                cd.setCarrito(carrito);
+                if (pro.isPresent()) {
+                    cd.setProducto(pro.get());
+                    carritoDetalleRepository.save(cd);
+                    json.put("message", "Producto añadido correctamente");
+                    return json;
+                } else {
+                    json.put("message", "Error, no existe este producto");
+                    return json;
+                }
             } else {
-                return "Error";
+                json.put("message", "Error, no existe este carrito");
+                return json;
             }
-        } else {
-            return "Error";
         }
     }
 
@@ -104,5 +117,38 @@ public class CarritoDetalleController {
     public @ResponseBody String delete(@PathVariable int id) {
         carritoDetalleRepository.deleteById(id);
         return "Carrito "+id+" Eliminado";
+    }
+
+    @PostMapping(value="/sumar/{id}")
+    public @ResponseBody JSONObject sumar(@PathVariable int id){
+        Optional<CarritoDetalle> carritoOld = carritoDetalleRepository.findById(id);
+        if(carritoOld.isPresent()){
+            CarritoDetalle carrito = carritoOld.get();
+            carrito.setCantidad(carrito.getCantidad()+1);
+            carritoDetalleRepository.save(carrito);
+            json.put("message", "Cantidad aumentada");
+        }else{
+            json.put("message", "No existe este registro");
+        }
+        return json;
+    }
+
+    @PostMapping(value="/restar/{id}")
+    public @ResponseBody JSONObject restar(@PathVariable int id){
+        Optional<CarritoDetalle> carritoOld = carritoDetalleRepository.findById(id);
+        if(carritoOld.isPresent()){
+            CarritoDetalle carrito = carritoOld.get();
+            carrito.setCantidad(carrito.getCantidad()-1);
+            if(carrito.getCantidad() <= 0){
+                carritoDetalleRepository.delete(carrito);
+                json.put("message", "Producto Eliminado del carrito");
+            }else{
+                carritoDetalleRepository.save(carrito);
+                json.put("message", "Cantidad disminuida");
+            }
+        }else{
+            json.put("message", "No existe este registro");
+        }
+        return json;
     }
 }
