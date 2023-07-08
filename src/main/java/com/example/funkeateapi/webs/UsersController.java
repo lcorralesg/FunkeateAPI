@@ -59,4 +59,14 @@ public class UsersController {
 		json.put("data",data);
 		return json;
 	}
+
+	//http://localhost:8080/users/findByEmail/{email}
+	@GetMapping(value = "/findByEmail/{email}")
+	public @ResponseBody JSONObject findByEmail(@PathVariable String email) {
+		// This returns a JSON or XML with the products
+		Optional<Users> data = usersRepository.findByEmail(email);
+		json.put("count",data.stream().count());
+		json.put("data",data);
+		return json;
+	}
 }

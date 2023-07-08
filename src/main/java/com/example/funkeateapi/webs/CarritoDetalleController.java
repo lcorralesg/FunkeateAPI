@@ -40,9 +40,9 @@ public class CarritoDetalleController {
     }*/
 
     //http://localhost:8080/carsdetail/add?
-    @PostMapping(path="/add") // Ruta para añadir productos
-    public @ResponseBody String addNewCarDetailProduct (@RequestParam double precio, @RequestParam int cantidad,
-                                                 @RequestParam int carrito_id, @RequestParam int producto_id) {
+    @PostMapping(path = "/add") // Ruta para añadir productos
+    public @ResponseBody String addNewCarDetailProduct(@RequestParam double precio, @RequestParam int cantidad,
+                                                       @RequestParam int carrito_id, @RequestParam int producto_id) {
 
         CarritoDetalle cd = new CarritoDetalle();
 
@@ -54,17 +54,17 @@ public class CarritoDetalleController {
 
         Optional<Producto> pro = productoRepository.findById(producto_id);
 
-        if(c.isPresent()) {
-            Carrito carrito  = c.get();
+        if (c.isPresent()) {
+            Carrito carrito = c.get();
             cd.setCarrito(carrito);
-            if(pro.isPresent()){
+            if (pro.isPresent()) {
                 cd.setProducto(pro.get());
                 carritoDetalleRepository.save(cd);
                 return "Saved";
-            }else{
+            } else {
                 return "Error";
             }
-        }else {
+        } else {
             return "Error";
         }
     }
@@ -73,9 +73,9 @@ public class CarritoDetalleController {
     @GetMapping(value = "/findByCarrito_EstadoAndCarritoId/{carrito_id}")
     public @ResponseBody JSONObject findByCarrito_EstadoAndCarritoId(@PathVariable Integer carrito_id) {
         // This returns a JSON or XML with the products
-        List<CarritoDetalle> data = carritoDetalleRepository.findByCarrito_EstadoAndCarritoId(true,carrito_id);
-        json.put("count",data.stream().count());
-        json.put("data",data);
+        List<CarritoDetalle> data = carritoDetalleRepository.findByCarrito_EstadoAndCarritoId(true, carrito_id);
+        json.put("count", data.stream().count());
+        json.put("data", data);
         return json;
     }
 
@@ -83,18 +83,26 @@ public class CarritoDetalleController {
     @GetMapping(value = "/findByCarrito_EstadoAndCarrito_Users_Id/{estado}/{usuario_id}")
     public @ResponseBody JSONObject findByCarrito_EstadoAndCarrito_Users_Id(@PathVariable boolean estado, @PathVariable int usuario_id) {
         // This returns a JSON or XML with the products
-        List<CarritoDetalle> data = carritoDetalleRepository.findByCarrito_EstadoAndCarrito_Users_Id(estado,usuario_id);
-        json.put("count",data.stream().count());
-        json.put("data",data);
+        List<CarritoDetalle> data = carritoDetalleRepository.findByCarrito_EstadoAndCarrito_Users_Id(estado, usuario_id);
+        json.put("count", data.stream().count());
+        json.put("data", data);
         return json;
     }
 
+    //http://localhost:8080/carsdetail/findByCarrito_EstadoAndCarrito_Users_Id/{usuario_id}
     @GetMapping(value = "/findByCarrito_EstadoAndCarrito_Users_Id/{usuario_id}")
     public @ResponseBody JSONObject findByCarrito_Users_Id(@PathVariable int usuario_id) {
         // This returns a JSON or XML with the products
-        List<CarritoDetalle> data = carritoDetalleRepository.findByCarrito_EstadoAndCarrito_Users_Id(true,usuario_id);
-        json.put("count",data.stream().count());
-        json.put("data",data);
+        List<CarritoDetalle> data = carritoDetalleRepository.findByCarrito_EstadoAndCarrito_Users_Id(true, usuario_id);
+        json.put("count", data.stream().count());
+        json.put("data", data);
         return json;
+    }
+
+    //http://localhost:8080/carsdetail/delete/{id}
+    @DeleteMapping(value = "/delete/{id}")
+    public @ResponseBody String delete(@PathVariable int id) {
+        carritoDetalleRepository.deleteById(id);
+        return "Carrito "+id+" Eliminado";
     }
 }

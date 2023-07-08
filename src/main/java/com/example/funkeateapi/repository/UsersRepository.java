@@ -13,4 +13,6 @@ import java.util.Optional;
 public interface UsersRepository extends CrudRepository<Users, Integer>{
     Optional<Users> findById(Integer integer);
 
+    Optional<Users> findByEmail(String email);
+
 }
