@@ -34,7 +34,8 @@ public class CategoriaController {
 	    categoriaRepository.save(c);
 	    return "Saved";
 	  }
-	
+
+
 	@GetMapping(path="/all")
 	  public @ResponseBody JSONObject getAllCategoria() {
 	    // This returns a JSON or XML with the categories
