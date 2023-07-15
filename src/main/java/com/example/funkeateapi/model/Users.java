@@ -3,6 +3,12 @@ package com.example.funkeateapi.model;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
 @Entity 
 public class Users {
 	@Id

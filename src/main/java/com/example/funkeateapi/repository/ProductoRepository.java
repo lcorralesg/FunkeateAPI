@@ -6,6 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
 public interface ProductoRepository extends CrudRepository<Producto, Integer> {
     List<Producto> findByCategoria(Categoria cat);
 
