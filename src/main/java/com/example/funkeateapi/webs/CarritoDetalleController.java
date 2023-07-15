@@ -48,7 +48,7 @@ public class CarritoDetalleController {
 
         if(carritoOld.isPresent()){
             CarritoDetalle carritoToUpdate = carritoOld.get();
-            carritoToUpdate.setCantidad(carritoToUpdate.getCantidad()+1);
+            carritoToUpdate.setCantidad(carritoToUpdate.getCantidad()+cantidad);
             carritoDetalleRepository.save(carritoToUpdate);
             json.put("message", "Este producto "+ carritoToUpdate.getProducto().getNombre()+" ya esta en tu carrito, hemos aumentado la cantidad");
             return json;
