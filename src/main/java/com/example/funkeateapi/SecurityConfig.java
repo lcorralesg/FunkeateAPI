@@ -32,6 +32,8 @@ public class SecurityConfig {
                 .mvcMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")
                 .mvcMatchers("/products/all").permitAll()
                 .mvcMatchers("/categories/all").permitAll()
+                /*.mvcMatchers("/products/add").permitAll()*/
+                /*.mvcMatchers("/carsdetail/add").permitAll()*/
                 .and().cors()
                 .and().oauth2ResourceServer().jwt();
         return http.build();

@@ -3,6 +3,12 @@ package com.example.funkeateapi.model;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
 @Entity
 @Table(name="funkos_producto")
 public class Producto {
@@ -40,11 +46,12 @@ public class Producto {
 	@Column(columnDefinition = "boolean default true")
 	private boolean personalizable;
 
-	@Column(columnDefinition = "varchar(50) default 16x12x9 cm", name="tamaño_caja")
-	private String tamañoCaja;
+	@Column(columnDefinition = "varchar(50) default '16x12x9 cm'", name="tamano_caja")
+	private String tamanoCaja;
 
-	@Column(columnDefinition = "varchar(50) default 13x6 cm", name = "tamaño_funko")
-	private String tamañoFunko;
+	@Column(columnDefinition = "varchar(50) default '13x6 cm'", name = "tamano_funko")
+	private String tamanoFunko;
+
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Categoria categoria;
 
@@ -144,20 +151,20 @@ public class Producto {
 		this.cajaPersonalizada = cajaPersonalizada;
 	}
 
-	public String getTamañoCaja() {
-		return tamañoCaja;
+	public String getTamanoCaja() {
+		return tamanoCaja;
 	}
 
-	public void setTamañoCaja(String tamañoCaja) {
-		this.tamañoCaja = tamañoCaja;
+	public void setTamanoCaja(String tamanoCaja) {
+		this.tamanoCaja = tamanoCaja;
 	}
 
-	public String getTamañoFunko() {
-		return tamañoFunko;
+	public String getTamanoFunko() {
+		return tamanoFunko;
 	}
 
-	public void setTamañoFunko(String tamañoFunko) {
-		this.tamañoFunko = tamañoFunko;
+	public void setTamanoFunko(String tamanoFunko) {
+		this.tamanoFunko = tamanoFunko;
 	}
 }
 //insert into funkos-producto (nombre, descripcion, precio, imagen, categoria_id) values ('Goku', 'Funko de Goku', 10.00, 'test2', 1);
