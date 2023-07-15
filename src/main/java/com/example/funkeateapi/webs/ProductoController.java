@@ -1,4 +1,4 @@
-package com.example.funkeateapi.controller;
+package com.example.funkeateapi.webs;
 
 import com.example.funkeateapi.model.Categoria;
 import com.example.funkeateapi.model.Producto;
@@ -12,10 +12,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
+
 @RestController
 @RequestMapping(path = "products", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "*")
 public class ProductoController {
+
 	@Autowired
 	private ProductoRepository productoRepository;
 	
@@ -23,6 +31,7 @@ public class ProductoController {
 	private CategoriaRepository categoriaRepository;
 
 	JSONObject json = new JSONObject();
+
 	//http://localhost:8080/products/add?name=Iron Man&descripcion=Funko de Iron Man personalizable&image=url&precio=85&categoria_id=2
 	@PostMapping(path="/add") // Ruta para añadir productos
 	  public @ResponseBody String addNewCategory (@RequestParam String name,
@@ -71,22 +80,22 @@ public class ProductoController {
 		return json;
 	  }
 
-	// http://localhost:8080/products/findbycategory?categoria_name=SuperHeroes
-	/*@GetMapping(path="/findbycategory") // Obtener productos por categoria
-	public @ResponseBody JSONObject findProductbyCategory (@RequestParam String categoria_name) {
+	// http://localhost:8080/products/findbycategoryname?cname=SuperHeroes
+	@GetMapping(path="/findbycategoryname") // Obtener productos por categoria
+	public @ResponseBody JSONObject findProductbyCategory (@RequestParam String cname) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
-		List<Categoria> cat = categoriaRepository.findByNombre(categoria_name);
+		List<Categoria> cat = categoriaRepository.findByNombre(cname);
 		Categoria c  = cat.get(0);
 		List<Producto> data = productoRepository.findByCategoria(c);
 		json.put("count",data.stream().count());
 		json.put("data",data);
 		return json;
-	}*/
+	}
 
-	// http://localhost:8080/products/findbycategoryname?cname=SuperHeroes
-	@GetMapping(path="/findbycategoryname") // Obtener productos por categoria
-	public @ResponseBody JSONObject findProductsbyCategoryName (@RequestParam String cname) {
+	// http://localhost:8080/products/findbycategoryname/{cname}
+	@GetMapping(value="/findbycategoryname/{cname}") // Obtener productos por categoria
+	public @ResponseBody JSONObject findProductsbyCategoryName (@PathVariable String cname) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 		List<Producto> data = productoRepository.findByCategoria_Nombre(cname);

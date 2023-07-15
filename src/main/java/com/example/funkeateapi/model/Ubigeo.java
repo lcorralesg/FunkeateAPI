@@ -3,11 +3,18 @@ package com.example.funkeateapi.model;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
+
 @Entity
 @Table(name="ubigeo")
 public class Ubigeo {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT")
     private int id;
 
     @Column(columnDefinition = "varchar(255)", nullable = false)
@@ -30,14 +37,15 @@ public class Ubigeo {
     @Column(columnDefinition = "varchar(255)", nullable = false)
     private String referencia;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Users usuario;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name = "created_at")
     private Date createdAt;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name = "update_at")
     private Date updateAt;
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Users users;
 
     public int getId() {
         return id;
@@ -95,14 +103,6 @@ public class Ubigeo {
         this.referencia = referencia;
     }
 
-    public Users getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Users usuario) {
-        this.usuario = usuario;
-    }
-
     public String getCodigoPostal() {
         return codigoPostal;
     }
@@ -125,5 +125,13 @@ public class Ubigeo {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.funkeateapi.controller;
+package com.example.funkeateapi.webs;
 
 import com.example.funkeateapi.model.Categoria;
 import com.example.funkeateapi.repository.CategoriaRepository;
@@ -7,6 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
+
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
 
 @Controller
 @RequestMapping(path="/categories")
@@ -28,7 +34,8 @@ public class CategoriaController {
 	    categoriaRepository.save(c);
 	    return "Saved";
 	  }
-	
+
+
 	@GetMapping(path="/all")
 	  public @ResponseBody JSONObject getAllCategoria() {
 	    // This returns a JSON or XML with the categories

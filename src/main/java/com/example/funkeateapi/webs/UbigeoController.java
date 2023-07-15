@@ -1,11 +1,16 @@
-package com.example.funkeateapi.controller;
+package com.example.funkeateapi.webs;
 
-import com.example.funkeateapi.model.Ubigeo;
 import com.example.funkeateapi.repository.UbigeoRepository;
 import com.nimbusds.jose.shaded.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+/**
+ *
+ * author = Jacko Tinoco
+ *
+ * */
 
 @RestController
 @RequestMapping(path = "ubigeo", produces = MediaType.APPLICATION_JSON_VALUE)
